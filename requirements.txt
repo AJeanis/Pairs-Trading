@@ -1,0 +1,6 @@
+python-dotenv
+requests 
+alpha_vantage
+pandas 
+numpy 
+matplotlib
