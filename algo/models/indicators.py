@@ -1,7 +1,7 @@
 from collections import deque
-from typing import List 
+from typing import List, Union
 
-from .assets import Asset
+from .assets import Asset, QuoteAsset
 
 #TODO
 #write a standard deviation class
@@ -14,10 +14,10 @@ class CalculationBase(object):
         self.metadata = deque()
         self.interval_size = interval_size
 
-    def append(self, asset: Asset):
+    def append(self, asset: Union[Asset, QuoteAsset]):
         raise NotImplementedError("Method not implemented!")
 
-    def initialize(self, data: List[Asset]):
+    def initialize(self, data: List[Union[Asset, QuoteAsset]]):
         if len(data) < self.interval_size:
             raise ValueError('Data not sufficient!')
         for asset in data:
@@ -28,7 +28,7 @@ class CalculationBase(object):
 
 class MultipleCalculationBase(CalculationBase):
 
-    def append(self, asset_one: Asset, asset_two: Asset):
+    def append(self, asset_one: Union[Asset, QuoteAsset], asset_two: Union[Asset, QuoteAsset()]):
         raise NotImplementedError("Method not implemented!")
 
     def initialize(self, data_one: List[Asset], data_two: List[Asset]):
@@ -53,12 +53,12 @@ class SimpleMovingAverage(CalculationBase):
     def latest_sma(self):
         return self.top()[1]
 
-    def append(self, asset: Asset):
+    def append(self, asset: Union[Asset, QuoteAsset]):
         if len(self.queue) == self.interval_size:
             self.metadata.popleft()
             popped_price, popped_sma = self.queue.popleft()
             self.removed += (popped_price - self.removed)
-        price = asset.close
+        price = asset.price
         curr_cum = price if not self.queue else price + self.latest_value
         self.queue.append([curr_cum, self.calculate(curr_cum)])
         self.metadata.append(asset)
@@ -71,11 +71,11 @@ class PriceRatio(MultipleCalculationBase):
     def __init__(self, interval_size: int = 50):
         super().__init__(interval_size)
 
-    def append(self, asset_one: Asset, asset_two: Asset):
-        if len(self.queue) == self.interval_size: 
+    def append(self, asset_one: Union[Asset, QuoteAsset], asset_two: Union[Asset, QuoteAsset]):
+        if len(self.queue) == self.interval_size:
             self.queue.popleft()
             self.metadata.popleft()
-        price_ratio = asset_one.close/asset_two.close
+        price_ratio = asset_one.price/asset_two.price
         self.queue.append(price_ratio)
         self.metadata.append((asset_one, asset_two))
 
@@ -84,12 +84,12 @@ class PriceRatioSimpleMovingAverage(SimpleMovingAverage, MultipleCalculationBase
     def __init__(self, interval_size: int = 50):
         super().__init__(interval_size)
 
-    def append(self, asset_one: Asset, asset_two: Asset):
+    def append(self, asset_one: Union[Asset, QuoteAsset], asset_two: Union[Asset, QuoteAsset]):
         if len(self.queue) == self.interval_size:
             self.metadata.popleft()
             popped_price, popped_sma = self.queue.popleft()
             self.removed += (popped_price - self.removed)
-        p_ratio = asset_one.close/asset_two.close
+        p_ratio = asset_one.price/asset_two.price
         curr_cum = p_ratio if not self.queue else p_ratio + self.latest_value
         self.queue.append([curr_cum, self.calculate(curr_cum)])
         self.metadata.append((asset_one, asset_two))

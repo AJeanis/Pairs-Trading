@@ -1,11 +1,11 @@
 import numpy as np
 
-from typing import List 
+from typing import List, Union
 
 from ..models.assets import Asset
 from ..models.indicators import PriceRatioSimpleMovingAverage, PriceRatio
 
-class TechnicalIndicatorsPipeline(object):
+class PairsTradingPipeline(object):
 
     def __init__(self, interval_one, interval_two):
         self._sma_one = PriceRatioSimpleMovingAverage(interval_one)
