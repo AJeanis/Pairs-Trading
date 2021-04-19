@@ -1,11 +1,17 @@
 import uuid
-from typing import Union
+from typing import Union, Dict
 
 from .assets import Asset, QuoteAsset
 from ..utils import marshal_trade_type
 
+class RiskMixin(object):
 
-class EquityTrade(object):
+    def evaluate_risk(self, current_price: float, stop_loss: float):
+        stop_loss_amount = self.entry_value * stop_loss
+        return stop_loss_amount > self.calculate_value(current_price)
+
+
+class EquityTrade(RiskMixin):
 
     def __init__(self, asset: Union[Asset, QuoteAsset],
                  shares: float,
@@ -17,6 +23,10 @@ class EquityTrade(object):
         self._closed = False
         self._closed_profit = None
         self._closed_value = None
+
+    @property 
+    def symbol(self):
+        return self.asset.symbol
 
     @property
     def id(self):
@@ -68,7 +78,8 @@ class EquityTrade(object):
 
     def calculate_profit(self, current_price: float):
         diff = (current_price - self.entry_point) * self.shares
-        return diff if self.trade_type == 'buy' else diff * -1
+        return diff if self.trade_type == 'long' else diff * -1
+        
 
 # TODO
 # Connect TradeHolder with database
@@ -79,17 +90,19 @@ class TradeHolder:
         self.trades = {}
 
     @property
-    def calculate_value(self, current_price):
+    def calculate_value(self, asset_dic: Dict[str, Union[Asset, QuoteAsset]]):
         total = 0
         for v in self.trades.values():
-            total += v.calculate_value()
+            asset = asset_dic[v.symbol.upper()]
+            total += v.calculate_value(asset.price)
         return total
 
     @property
-    def calculate_profit(self, current_price):
+    def calculate_profit(self, asset_dic: Dict[str, Union[Asset, QuoteAsset]]):
         total = 0
         for v in self.trades.values():
-            total += v.calculate_profit()
+            asset = asset_dic[v.symbol.upper()]
+            total += v.calculate_profit(asset.price)
         return total
 
     def sort_by_profit(self, current_price, desc=True):

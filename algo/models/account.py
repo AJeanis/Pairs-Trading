@@ -16,6 +16,12 @@ class Account:
         return self._cash
 
     def execute_trade(self, trade: EquityTrade):
+        if trade.closed: 
+            self.close_trade(trade)
+        else:
+            self.open_trade(trade)
+
+    def open_trade(self, trade: EquityTrade):
         self._cash -= trade.entry_value
 
     def close_trade(self, trade: EquityTrade):
