@@ -1,5 +1,5 @@
 # Pairs Trading In Python
-
+![image](https://user-images.githubusercontent.com/64994307/115169945-0894dc00-a085-11eb-8fbb-b857bfc93d28.png)
 ### Pairs trading is a market neutral mean-reversion trading strategy that involves matching long and short positions in highly correlated securities. In addition to correlation, pairs trading requires a general understanding of stationarity, cointegration, and the risk factors affecting each stock within a pair.
 
 ### In part 1, we will go through the process of choosing a target sector, locating a cointegrated pair, and then testing the price ratio and spread of the pair for stationarity.
