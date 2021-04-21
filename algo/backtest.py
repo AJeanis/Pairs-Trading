@@ -64,7 +64,7 @@ class BacktestAlgoTradingPipeline(AlgoTradingPipeline):
         self.evaluate_results()
         print('Long Profit:', self.long_profit)
         print('Long Value:', self.long_value)
-        print('Short Profit', self.long_value)
+        print('Short Profit', self.short_profit)
         print('Short Value', self.short_value)
         print('ROI:', (self.long_value + self.short_value)/self.account.starting_cash)
 
@@ -80,5 +80,5 @@ class BacktestAlgoTradingPipeline(AlgoTradingPipeline):
         
     def evaluate_short(self, asset_dic):
         self._short_profit = self.shorts.calculate_profit(asset_dic)
-        self._long_value = self.shorts.calculate_value(asset_dic)
+        self._short_value = self.shorts.calculate_value(asset_dic)
 

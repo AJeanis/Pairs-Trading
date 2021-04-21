@@ -40,7 +40,7 @@ class TradeExecutionPipeline:
         return self.trade_holder.calculate_profit(asset_dic) + self.closed_holder.calculate_profit(asset_dic)
 
     def calculate_value(self, asset_dic: Dict[str, Union[Asset, QuoteAsset]]):
-        return self.trade_holder.calculate_value(asset_dic) + self.closed_holder.calcualte_value(asset_dic)
+        return self.trade_holder.calculate_value(asset_dic) + self.closed_holder.calculate_value(asset_dic)
 
 
 class LongExecutionPipeline(TradeExecutionPipeline):

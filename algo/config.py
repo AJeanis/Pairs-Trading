@@ -14,9 +14,9 @@ class DevelopmentConfig(Config):
     starting_cash = 100000
     interval_one = 5
     interval_two = 50
-    stop_loss = .5
+    stop_loss = .10
     algorithm_type = 'pairs'
-    symbols = ['GOOG', 'QQQ']
+    symbols = ['AMZN', 'TSLA']
     lower_range = '2018-04-01'
     upper_range = None
     trade_prop = .05
