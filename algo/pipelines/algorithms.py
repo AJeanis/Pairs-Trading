@@ -57,8 +57,6 @@ class PairsTradingPipeline(object):
     @marshal_trade
     def evaluate_trade(self):
         if self.zscore >= 1:
-            print(self.zscore)
             return ('short', 'long')
         if self.zscore <= -1:
-            print(self.zscore)
             return ('long', 'short')

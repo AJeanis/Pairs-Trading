@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt 
+import pandas as pd
+
 from typing import List, Union, Dict
 
 from .models.account import Account
@@ -93,9 +96,6 @@ class AlgoTradingPipeline:
         asset_dic = self.retriever.get_quote()
         self.evaluate(asset_dic)
         self.manage_risk(asset_dic)
-
-
-    
     
 
 

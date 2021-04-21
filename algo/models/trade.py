@@ -1,7 +1,10 @@
 import uuid
-from typing import Union, Dict
+import pandas as pd 
 
-from .assets import Asset, QuoteAsset
+from typing import Union, Dict
+from collections import defaultdict
+
+from .assets import Asset, QuoteAsset, AssetSchema, QuoteAssetSchema
 from ..utils import marshal_trade_type
 
 class RiskMixin(object):
@@ -89,7 +92,6 @@ class TradeHolder:
     def __init__(self):
         self.trades = {}
 
-    @property
     def calculate_value(self, asset_dic: Dict[str, Union[Asset, QuoteAsset]]):
         total = 0
         for v in self.trades.values():
@@ -97,7 +99,6 @@ class TradeHolder:
             total += v.calculate_value(asset.price)
         return total
 
-    @property
     def calculate_profit(self, asset_dic: Dict[str, Union[Asset, QuoteAsset]]):
         total = 0
         for v in self.trades.values():
@@ -129,3 +130,16 @@ class TradeHolder:
         if trade_id in self.trades:
             del self.trades[trade_id]
         raise ValueError('Invalid Trade ID!')
+
+    def to_pandas(self):
+        res = defaultdict(list)
+        for trade_id in self.trades: 
+            asset = self.get_trade(trade_id).asset
+            schema = AssetSchema() if isinstance(asset, Asset) else QuoteAssetSchema()
+            asset_dict = schema.dump(asset)
+            for k, v in asset_dict.items(): 
+                res[k].append(v)
+        return pd.DataFrame(res)
+
+        
+
