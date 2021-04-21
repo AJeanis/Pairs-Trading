@@ -335,7 +335,7 @@ print(pairs)
 
 
     
-![png](output_12_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_12_0.png)
     
 
 
@@ -360,7 +360,7 @@ plt.show()
 
 
     
-![png](output_14_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_14_0.png)
     
 
 
@@ -422,7 +422,7 @@ plt.show()
 
 
     
-![png](output_18_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_18_0.png)
     
 
 
@@ -444,7 +444,7 @@ plt.show()
 
 
     
-![png](output_20_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_20_0.png)
     
 
 
@@ -506,7 +506,7 @@ plt.show()
 
 
     
-![png](output_24_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_24_0.png)
     
 
 
@@ -773,7 +773,7 @@ plt.show()
 
 
     
-![png](output_36_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_36_0.png)
     
 
 
@@ -801,7 +801,7 @@ plt.show()
 
 
     
-![png](output_39_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_39_0.png)
     
 
 
@@ -855,7 +855,7 @@ plt.show()
 
 
     
-![png](output_43_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_43_0.png)
     
 
 
@@ -908,7 +908,7 @@ plt.show()
 
 
     
-![png](output_46_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_46_0.png)
     
 
 
@@ -1642,13 +1642,13 @@ title= 'Hypothetical Growth of $100,000 in 5 Year T-Note Held to Maturity', colo
 
 
     
-![png](output_69_1.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_69_1.png)
     
 
 
 
     
-![png](output_69_2.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_69_2.png)
     
 
 
@@ -1720,7 +1720,7 @@ plt.show()
 
 
     
-![png](output_75_0.png)
+![png](https://raw.githubusercontent.com/philipk19238/Pairs-Trading/philip-development/documentation/output_75_0.png)
     
 
 
