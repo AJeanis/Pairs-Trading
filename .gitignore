@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+#jupyter notebook 
+cluster_analysis.ipynb
+.ipynb
+
 # Distribution / packaging
 .Python
 build/
