@@ -1,5 +1,5 @@
 # Pairs Trading In Python
-
+### by Alexander Jeanis
 ## Table of Contents
 
 ### Introduction
