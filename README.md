@@ -1646,10 +1646,8 @@ From the looks of the things, our strategy outearns its 'risk free' by ~30% over
 
 The results look excellent but we need to remember two things:
 
- - 
-Our strategy is not truly as 'risk free' as a treasury note. 
- - 
-Forward-Looking Bias — we already knew the pair would be cointegrated over the whole timeperiod 
+ - Our strategy is not truly as 'risk free' as a treasury note. 
+ - Forward-Looking Bias — we already knew the pair would be cointegrated over the whole timeperiod 
 
 Nonetheless its usually a good idea to test a strategy in a period where you the desired outcome; if the algorithm doesnt succeed when conditions are known and ideal, it definitely shouldnt see live trials.
 
