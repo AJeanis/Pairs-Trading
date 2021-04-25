@@ -816,19 +816,15 @@ Accordingly, we should be design a strategy that _'buys'_ the ratio when it is t
 ***
 The rules for this strategy are simple: 
 
- - 
-We want to 'buy' the ratio when the rolling z score is lower than 1.25 SD from the mean. 
- - 
-We want to 'sell' the ratio when the rolling z score is higher than 1.25 SD from the mean.
+ - We want to 'buy' the ratio when the rolling z score is lower than 1.25 SD from the mean. 
+ - We want to 'sell' the ratio when the rolling z score is higher than 1.25 SD from the mean.
 
 Thats it!
 
 To accomplish this, we will make two copies of the price ratio dataframe and then enact the following modifications:
 
- - 
-We want to 'sell' the ratio when the rolling z score is higher than 1.25 SD from the mean, so **we will set all values below +1.25 SD equal to zero, leaving us with the desired sell dates.**
- - 
-We want to 'buy' the ratio when the rolling z score is lower than 1.25 SD from the mean, so **we will set all values above -1.25 SD equal to zero, leaving us with the desired buy dates.**
+ - We want to 'sell' the ratio when the rolling z score is higher than 1.25 SD from the mean, so **we will set all values below +1.25 SD equal to zero, leaving us with the desired sell dates.**
+ - We want to 'buy' the ratio when the rolling z score is lower than 1.25 SD from the mean, so **we will set all values above -1.25 SD equal to zero, leaving us with the desired buy dates.**
 
 ***
 
@@ -923,16 +919,11 @@ Lets make a function to simulate our strategy in action.
 
 In order:
 
- - 
-First, we will begin by calculating the price ratio and rolling average z-score of our two assets. 
- - 
-Then, we will use _if statements_ to execute trades when the price ratio exceeds +- 1.25 SD; this entails keeping track of the total position sizes (for leverage constraints) and prices that shares of each stock were bought / sold for, so that we can calculate profit later. 
- - 
-Afer opening a trade, we will track the position value everyday and close the position if it exceeds our stoploss.
- - 
-Finally, we will close our postions when the price ratio z-score is back within normal range (+-0.5 SD).
- - 
-Along the way, we will also be keeping track of a multitude of variables to analyze our performance. Among these the number of trades, trade dates, trade gains / losses, and overall profit are all recorded for high / low trades individually.
+ - First, we will begin by calculating the price ratio and rolling average z-score of our two assets. 
+ - Then, we will use _if statements_ to execute trades when the price ratio exceeds +- 1.25 SD; this entails keeping track of the total position sizes (for leverage constraints) and prices that shares of each stock were bought / sold for, so that we can calculate profit later. 
+ - Afer opening a trade, we will track the position value everyday and close the position if it exceeds our stoploss.
+ - Finally, we will close our postions when the price ratio z-score is back within normal range (+-0.5 SD).
+ - Along the way, we will also be keeping track of a multitude of variables to analyze our performance. Among these the number of trades, trade dates, trade gains / losses, and overall profit are all recorded for high / low trades individually.
 
 **Note: _High_ and _Low_ in the following variable declarations refer to trades made when the price ratio is high (+1.25 SD) or low (-1.25 SD)**
 
@@ -1117,10 +1108,8 @@ Now that our function is made, lets import our pair and test the results in-samp
 
 **Note:**
 
- - 
-In-sample refers to the period in which we tested for cointegration (2013-2018) and out-of-sample refers to the period (2018-2021) where we dont know if the pair is cointegrated.
- - 
-The results for 2013-2018 are subject to **forward looking bias** as we know that the pair was cointegrated during the time. The point of simulating trading during this period is two fold:
+ - In-sample refers to the period in which we tested for cointegration (2013-2018) and out-of-sample refers to the period (2018-2021) where we dont know if the pair is cointegrated.
+ - The results for 2013-2018 are subject to **forward looking bias** as we know that the pair was cointegrated during the time. The point of simulating trading during this period is two fold:
      - to make sure our strategy works when we **know** that cointegration exists <br>
      - to illustrate a rough baseline of exactly how profitable pairs trading can be when cointegration holds.
 
